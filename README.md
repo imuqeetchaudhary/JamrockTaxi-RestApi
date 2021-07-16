@@ -88,3 +88,44 @@ password: 12345
     isAvailable:
 }
 ```
+
+## Routes to Extras
+
+### to add a new extras
+
+- extras/add :post
+
+```
+{
+    name:
+    description:
+    price:
+}
+```
+
+### to get a single extras
+
+- extras/sinle :post
+
+```
+{
+    extrasId
+}
+```
+
+### to get all extras
+
+- extras/all :get
+
+### to update an extras
+
+- extras/update :patch
+
+```
+{
+    extrasId:
+    name:
+    description:
+    price:
+}
+```

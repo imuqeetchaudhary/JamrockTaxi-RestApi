@@ -3,6 +3,7 @@ const bodyParser = require("body-parser")
 const { connection } = require("./db/connection")
 const user = require("./routes/user")
 const vehicle = require("./routes/vehicle")
+const extras = require("./routes/extras")
 const cors = require("cors")
 
 const app = express()
@@ -17,5 +18,6 @@ app.get("/", async (req, res) => {
 
 app.use("/user", user)
 app.use("/vehicle", vehicle)
+app.use("/extras", extras)
 
 module.exports = { app }
