@@ -1,5 +1,9 @@
 # Jamrock Taxi Rest Api
 
+## Backend deployment link
+
+https://jamrock-taxi-restapi.herokuapp.com/
+
 ## Routes for User
 
 ### to register a new user
