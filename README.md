@@ -42,3 +42,49 @@ password: 12345
 ### to view the profile of an authenticated user
 
 - user/profile :post
+
+## Routes to Vehicles
+
+### to add a new vehicle
+
+- vehicle/add :post
+
+```
+{
+    image: formdata
+    name:
+    passengerCapacity:
+    luggageCapacity:
+    pricePerKM:
+    isAvailable:
+}
+```
+
+### to get a single vehicle
+
+- vehicle/single :post
+
+```
+{
+    vehicleId:
+}
+```
+
+### to get all vehicles
+
+- vehicle/all :get
+
+### to update a vehicle
+
+- vehicle/update :patch
+
+```
+{
+    image: formdata
+    name:
+    passengerCapacity:
+    luggageCapacity:
+    pricePerKM:
+    isAvailable:
+}
+```
