@@ -80,6 +80,7 @@ password: 12345
 
 ```
 {
+    vehicleId:
     image: formdata
     name:
     passengerCapacity:

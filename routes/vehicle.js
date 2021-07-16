@@ -3,7 +3,7 @@ const router = express.Router()
 const vehicle = require("../controllers/vehicle")
 const { authentication } = require("../middlewares/isAuth")
 const { validation } = require("../middlewares/validation")
-const { addVehicleSchema, getVehicleSchema } = require("../validation/vehicle")
+const { addVehicleSchema, getVehicleSchema, updateVehicleSchema } = require("../validation/vehicle")
 
 const multer = require("multer")
 const path = require("path")
@@ -30,5 +30,5 @@ router
     .post("/add", validation(addVehicleSchema), authentication, upload.single("image"), vehicle.addVehicle)
     .get("/all", authentication, vehicle.getAllVehicles)
     .post("/single", validation(getVehicleSchema), authentication, vehicle.getSingleVehicle)
-    .patch("/update", validation(addVehicleSchema), authentication, vehicle.updateVehicle)
+    .patch("/update", validation(updateVehicleSchema), authentication, vehicle.updateVehicle)
 module.exports = router
