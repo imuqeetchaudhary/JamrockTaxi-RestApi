@@ -130,3 +130,32 @@ password: 12345
     price:
 }
 ```
+
+## Routes for booking
+
+### to add a new booking
+
+- booking/add :post
+
+```
+{
+    userId:
+    pickupLocation:
+    dropoffLocation:
+    startDateTime: ("2021-07-15T15:30:00Z")
+    returnDateTime: ("2021-07-15T15:30:00Z")
+    distance:
+    transferType:
+    vehicleId:
+    vehiclePrice:
+    extrasId:
+    extrasPrice:
+    passengerName:
+    passengerEmail:
+    passengerNumber:
+    totalPassengers:
+    totalBags:
+    pickupFlightNumber:
+    returnFlightNumber:
+}
+```
