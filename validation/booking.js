@@ -19,3 +19,28 @@ exports.addBookingSchema = yup.object({
     pickupFlightNumber: yup.string(),
     returnFlightNumber: yup.string(),
 })
+
+exports.updateBookingSchema = yup.object({
+    bookingId: yup.string().required(),
+    pickupLocation: yup.string().required(),
+    dropoffLocation: yup.string().required(),
+    startDateTime: yup.date(),
+    returnDateTime: yup.date(),
+    distance: yup.number().required(),
+    transferType: yup.string(),
+    vehicleId: yup.string(),
+    vehiclePrice: yup.string().required(),
+    extrasId: yup.string(),
+    extrasPrice: yup.string(),
+    passengerName: yup.string(),
+    passengerEmail: yup.string(),
+    passengerNumber: yup.number(),
+    totalPassengers: yup.number(),
+    totalBags: yup.number(),
+    pickupFlightNumber: yup.string(),
+    returnFlightNumber: yup.string(),
+})
+
+exports.getBookingSchema = yup.object({
+    bookingId: yup.string().required(),
+})

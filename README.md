@@ -139,7 +139,51 @@ password: 12345
 
 ```
 {
-    userId:
+    pickupLocation:
+    dropoffLocation:
+    startDateTime: ("2021-07-15T15:30:00Z")
+    returnDateTime: ("2021-07-15T15:30:00Z")
+    distance:
+    transferType:
+    vehicleId:
+    vehiclePrice:
+    extrasId:
+    extrasPrice:
+    passengerName:
+    passengerEmail:
+    passengerNumber:
+    totalPassengers:
+    totalBags:
+    pickupFlightNumber:
+    returnFlightNumber:
+}
+```
+
+### to get all-bookings of single user
+
+-booking/all-bookings-of-single-user :get
+
+### to get single booking of single user
+
+- booking/single-booking-of-single-user :post
+
+```
+{
+    bookingId:
+}
+```
+
+### to get all bookings of all users
+
+- booking/all-bookings-of-all-users :get
+
+### to update a booking
+
+- booking/update :patch
+
+```
+{
+    bookingId:
     pickupLocation:
     dropoffLocation:
     startDateTime: ("2021-07-15T15:30:00Z")
