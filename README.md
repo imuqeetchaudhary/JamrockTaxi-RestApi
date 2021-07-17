@@ -204,3 +204,13 @@ password: 12345
     isCompleted:
 }
 ```
+
+### to delete a booking
+
+- booking/delete :delete
+
+```
+{
+    bookingId
+}
+```
