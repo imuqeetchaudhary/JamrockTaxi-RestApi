@@ -69,6 +69,10 @@ const bookingSchema = new schema({
     totalPrice: {
         type: Number,
         require: true
+    },
+    isCompleted: {
+        type: Boolean,
+        default: false
     }
 })
 

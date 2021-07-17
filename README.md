@@ -201,5 +201,6 @@ password: 12345
     totalBags:
     pickupFlightNumber:
     returnFlightNumber:
+    isCompleted:
 }
 ```
