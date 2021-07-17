@@ -3,9 +3,11 @@ const { User } = require("../db/models/user")
 const Exceptions = require("../utils/custom-exceptions")
 const { promise } = require("../middlewares/promises")
 const { sendMail } = require("../middlewares/sendMail")
+const stripe = require('stripe')('sk_test_51J1POvClkiKKoyU1EwrqRkPchsMA2eXdwSeI7VCQiqCOzOVwqOWoWGS8qCEj1fVQA7WCx1nnoeJD3KfPJHEE0XOG00uMs4G6yS');
 
 exports.addBooking = promise(async (req, res) => {
     const body = req.body
+    const totalPrice = (body.distance * body.vehiclePrice * body.extrasPrice)
 
     const admin = await User.findOne({ _id: "60f12b73de4ad9284ca58890" })
     if (!admin) throw new Exceptions.NotFound("Admin not found")
@@ -13,7 +15,7 @@ exports.addBooking = promise(async (req, res) => {
     const newBooking = new Booking({
         ...body,
         userId: req.user._id,
-        totalPrice: (body.distance * body.vehiclePrice * body.extrasPrice)
+        totalPrice: totalPrice
     })
     await newBooking.save()
 
@@ -23,7 +25,19 @@ exports.addBooking = promise(async (req, res) => {
     await sendMail(req.user.email, userBookingSlip)
     await sendMail(admin.email, adminBookingSlip)
 
-    res.status(200).json({ message: "Successfully added a new booking", newBooking })
+    const paymentIntent = await stripe.paymentIntents.create({
+        amount: (totalPrice * 100),
+        currency: 'usd',
+        metadata: { integration_check: 'accept_a_payment_for_jamrock_taxi_booking' },
+        receipt_email: req.user.email,
+        payment_method_types: ['card'],
+    });
+
+    res.status(200).json({
+        message: "Successfully added a new booking",
+        'client_secret': paymentIntent['client_secret'],
+        newBooking
+    })
 })
 
 exports.getAllBookingsOfSingleUser = promise(async (req, res) => {
