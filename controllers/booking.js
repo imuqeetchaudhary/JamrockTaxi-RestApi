@@ -79,3 +79,10 @@ exports.updateBooking = promise(async (req, res) => {
 
     res.status(200).json({ message: "Successfully updated Booking", booking })
 })
+
+exports.deleteBooking = promise(async (req, res) => {
+    const body = req.body
+
+    const deleteBooking = await Booking.deleteOne({ _id: body.bookingId })
+    res.status(200).json({ message: "Successfully deleted booking" })
+})
