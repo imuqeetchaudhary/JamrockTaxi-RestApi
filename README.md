@@ -157,6 +157,7 @@ password: 12345
     transferType:
     vehicleId:
     extrasId:
+    extrasPrice:
     passengerName:
     passengerEmail:
     passengerNumber:
