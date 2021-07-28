@@ -8,6 +8,7 @@ const { addExtrasSchema, getExtrasSchema, updateExtrasSchema } = require("../val
 router
     .post("/add", validation(addExtrasSchema), authentication, extras.addExtras)
     .get("/all", authentication, extras.getAllExtras)
+    .post("/get-all-by-array", authentication, extras.getAllExtrasByArray)
     .post("/single", validation(getExtrasSchema), authentication, extras.getSingleExtras)
     .patch("/update", validation(updateExtrasSchema), authentication, extras.updateExtras)
 

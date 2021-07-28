@@ -118,6 +118,16 @@ password: 12345
 
 - extras/all :get
 
+### to get all extras by passing array
+
+- extras/get-all-by-array :post
+
+```
+{
+    extrasId: []
+}
+```
+
 ### to update an extras
 
 - extras/update :patch

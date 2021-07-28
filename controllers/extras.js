@@ -19,6 +19,26 @@ exports.getAllExtras = promise(async (req, res) => {
     res.status(200).json({ extras })
 })
 
+exports.getAllExtrasByArray = promise(async (req, res) => {
+    const body = req.body
+
+    const extras = await Extras.find({ _id: { $in: body.extrasId } })
+    if (!extras) throw new Exceptions.NotFound("No extras found")
+
+    // console.log(extras[0].price);
+    // console.log(extras[1].price);
+    // console.log(extras[2].price);
+    // console.log(extras[3].price);
+
+    // let price = 0
+    // extras.forEach((extra) => {
+    //     price = price + extra.price
+    // })
+    // console.log("Total Extras Price", price);
+
+    res.status(200).json({ extras })
+})
+
 exports.getSingleExtras = promise(async (req, res) => {
     const body = req.body
 
