@@ -146,9 +146,7 @@ password: 12345
     distance:
     transferType:
     vehicleId:
-    vehiclePrice:
     extrasId:
-    extrasPrice:
     passengerName:
     passengerEmail:
     passengerNumber:
@@ -191,9 +189,7 @@ password: 12345
     distance:
     transferType:
     vehicleId:
-    vehiclePrice:
     extrasId:
-    extrasPrice:
     passengerName:
     passengerEmail:
     passengerNumber:

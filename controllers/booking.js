@@ -1,4 +1,6 @@
 const { Booking } = require("../db/models/booking")
+const { Vehicle } = require("../db/models/vehicle")
+const { Extras } = require("../db/models/extras")
 const { User } = require("../db/models/user")
 const Exceptions = require("../utils/custom-exceptions")
 const { promise } = require("../middlewares/promises")
@@ -7,7 +9,14 @@ const stripe = require('stripe')('sk_test_51J1POvClkiKKoyU1EwrqRkPchsMA2eXdwSeI7
 
 exports.addBooking = promise(async (req, res) => {
     const body = req.body
-    const totalPrice = (body.distance * body.vehiclePrice * body.extrasPrice)
+
+    const vehicle = await Vehicle.findById(body.vehicleId)
+    if(!vehicle) throw new Exceptions.NotFound("No vehicle found")
+
+    const extras = await Extras.findById(body.extrasId)
+    if (!extras) throw new Exceptions.NotFound("No extras found")
+
+    const totalPrice = (body.distance * vehicle.pricePerKM * extras.price)
 
     const admin = await User.findOne({ _id: "60f12b73de4ad9284ca58890" })
     if (!admin) throw new Exceptions.NotFound("Admin not found")
