@@ -41,13 +41,13 @@ password: 12345
 
 ### to view the profile of an authenticated user
 
-- user/profile :post
+- user/profile :post (protected. token required)
 
 ## Routes to Vehicles
 
 ### to add a new vehicle
 
-- vehicle/add :post
+- vehicle/add :post (protected. token required)
 
 ```
 {
@@ -62,7 +62,7 @@ password: 12345
 
 ### to get a single vehicle
 
-- vehicle/single :post
+- vehicle/single :post (protected. token required)
 
 ```
 {
@@ -72,11 +72,11 @@ password: 12345
 
 ### to get all vehicles
 
-- vehicle/all :get
+- vehicle/all :get (protected. token required)
 
 ### to update a vehicle
 
-- vehicle/update :patch
+- vehicle/update :patch (protected. token required)
 
 ```
 {
@@ -94,7 +94,7 @@ password: 12345
 
 ### to add a new extras
 
-- extras/add :post
+- extras/add :post (protected. token required)
 
 ```
 {
@@ -106,7 +106,7 @@ password: 12345
 
 ### to get a single extras
 
-- extras/sinle :post
+- extras/single :post (protected. token required)
 
 ```
 {
@@ -116,11 +116,11 @@ password: 12345
 
 ### to get all extras
 
-- extras/all :get
+- extras/all :get (protected. token required)
 
 ### to get all extras by passing array
 
-- extras/get-all-by-array :post
+- extras/get-all-by-array :post (protected. token required)
 
 ```
 {
@@ -130,7 +130,7 @@ password: 12345
 
 ### to update an extras
 
-- extras/update :patch
+- extras/update :patch (protected. token required)
 
 ```
 {
@@ -145,7 +145,7 @@ password: 12345
 
 ### to add a new booking
 
-- booking/add :post
+- booking/add :post (protected. token required)
 
 ```
 {
@@ -170,11 +170,11 @@ password: 12345
 
 ### to get all-bookings of single user
 
--booking/all-bookings-of-single-user :get
+-booking/all-bookings-of-single-user :get (protected. token required)
 
 ### to get single booking of single user
 
-- booking/single-booking-of-single-user :post
+- booking/single-booking-of-single-user :post (protected. token required)
 
 ```
 {
@@ -184,11 +184,11 @@ password: 12345
 
 ### to get all bookings of all users
 
-- booking/all-bookings-of-all-users :get
+- booking/all-bookings-of-all-users :get (protected. token required)
 
 ### to update a booking
 
-- booking/update :patch
+- booking/update :patch (protected. token required)
 
 ```
 {
@@ -214,7 +214,7 @@ password: 12345
 
 ### to delete a booking
 
-- booking/delete :delete
+- booking/delete :delete (protected. token required)
 
 ```
 {
