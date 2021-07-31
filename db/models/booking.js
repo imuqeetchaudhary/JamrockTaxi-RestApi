@@ -70,6 +70,10 @@ const bookingSchema = new schema({
         type: Number,
         require: true
     },
+    isPaid: {
+        type: Boolean,
+        default: false
+    },
     isCompleted: {
         type: Boolean,
         default: false

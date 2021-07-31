@@ -11,7 +11,7 @@ exports.addBooking = promise(async (req, res) => {
     const body = req.body
 
     const vehicle = await Vehicle.findById(body.vehicleId)
-    if(!vehicle) throw new Exceptions.NotFound("No vehicle found")
+    if (!vehicle) throw new Exceptions.NotFound("No vehicle found")
 
     const totalPrice = (body.distance * vehicle.pricePerKM * body.extrasPrice)
 
@@ -105,4 +105,22 @@ exports.deleteBooking = promise(async (req, res) => {
 
     const deleteBooking = await Booking.deleteOne({ _id: body.bookingId })
     res.status(200).json({ message: "Successfully deleted booking" })
+})
+
+exports.confirmPayment = promise(async (req, res) => {
+    const body = req.body
+
+    const updateBooking = await Booking.updateOne(
+        { _id: body.bookingId },
+        {
+            $set: {
+                isPaid: true
+            }
+        }
+    )
+
+    const booking = await Booking.findById(body.bookingId)
+    if(!booking) throw new Exceptions.NotFound("No booking found")
+    
+    res.json({ message: "Successfully updated booking", booking })
 })

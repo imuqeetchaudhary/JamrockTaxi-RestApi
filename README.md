@@ -168,6 +168,16 @@ password: 12345
 }
 ```
 
+### to change booking status after payment
+
+- booking/confirm-payment :patch (protected. token required)
+
+```
+{
+    bookingId:
+}
+```
+
 ### to get all-bookings of single user
 
 -booking/all-bookings-of-single-user :get (protected. token required)
