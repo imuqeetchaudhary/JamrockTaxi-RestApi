@@ -118,6 +118,24 @@ exports.deleteBooking = promise(async (req, res) => {
   res.status(200).json({ message: "Successfully deleted booking" });
 });
 
+exports.confirmPayment = promise(async (req, res) => {
+  const body = req.body
+
+  const updateBooking = await Booking.updateOne(
+    { _id: body.bookingId },
+    {
+      $set: {
+        isPaid: true
+      }
+    }
+  )
+
+  const booking = await Booking.findById(body.bookingId)
+  if (!booking) throw new Exceptions.NotFound("No booking found")
+
+  res.json({ message: "Successfully updated booking", booking })
+})
+
 async function findUserById(id) {
   return User.findOne({ _id: id });
 }
