@@ -1,47 +1,51 @@
-const { Vehicle } = require("../db/models/vehicle")
-const Exceptions = require("../utils/custom-exceptions")
-const { promise } = require("../middlewares/promises")
+const { Vehicle } = require("../db/models/vehicle");
+const Exceptions = require("../utils/custom-exceptions");
+const { promise } = require("../middlewares/promises");
+const mongoSerializer = require("../utils/mongo-serializer");
 
 exports.addVehicle = promise(async (req, res) => {
-    const body = req.body
+  const body = req.body;
 
-    const newVehicle = new Vehicle({
-        ...req.body,
-        image: req.file.filename
-    })
+  const newVehicle = new Vehicle({
+    ...req.body,
+    image: req.file.filename,
+  });
 
-    await newVehicle.save()
-    res.status(200).json({ message: "Successfully added a new product" })
-})
+  await newVehicle.save();
+  res.status(200).json({ message: "Successfully added a new product" });
+});
 
 exports.getAllVehicles = promise(async (req, res) => {
-    const vehicles = await Vehicle.find()
-    if (!vehicles) throw new Exceptions.NotFound("No vehicle found")
+  const vehicles = await Vehicle.find();
+  if (!vehicles) throw new Exceptions.NotFound("No vehicle found");
 
-    res.status(200).json({ vehicles })
-})
+  const _vehicles = vehicles.map((vehicle) => mongoSerializer(vehicle._doc));
+  res.status(200).json({ vehicles: _vehicles });
+});
 
 exports.getSingleVehicle = promise(async (req, res) => {
-    const body = req.body
+  const body = req.body;
 
-    const vehicle = await Vehicle.findOne({ _id: body.vehicleId })
-    if (!vehicle) throw new Exceptions.NotFound("No vehicle found")
+  const vehicle = await Vehicle.findOne({ _id: body.vehicleId });
+  if (!vehicle) throw new Exceptions.NotFound("No vehicle found");
 
-    res.status(200).json({ vehicle })
-})
+  const _vehicle = mongoSerializer(vehicle._doc);
+  res.status(200).json({ vehicle: _vehicle });
+});
 
 exports.updateVehicle = promise(async (req, res) => {
-    const body = req.body
+  const body = req.body;
 
-    const vehicle = await Vehicle.updateOne(
-        { 
-            _id: body.vehicleId
-        },
-        {
-            $set: {
-                ...req.body
-            }
-        })
+  const vehicle = await Vehicle.updateOne(
+    {
+      _id: body.vehicleId,
+    },
+    {
+      $set: {
+        ...req.body,
+      },
+    }
+  );
 
-    res.status(200).json({ message: "Successfully updated vehicle" })
-})
+  res.status(200).json({ message: "Successfully updated vehicle" });
+});
