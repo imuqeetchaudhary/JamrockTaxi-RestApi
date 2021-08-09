@@ -25,6 +25,8 @@ function getMailOptions() {
 
 // Step 3
 function sendMail(email, bookingSlip) {
+    console.log("email: ", email);
+
     const mailOpts = getMailOptions();
 
     return transporter.sendMail({ ...mailOpts, to: email, text: bookingSlip }, (err, data) => {

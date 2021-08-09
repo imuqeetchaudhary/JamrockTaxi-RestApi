@@ -15,7 +15,10 @@ exports.addBooking = promise(async (req, res) => {
   const vehicle = await Vehicle.findById(body.vehicleId);
   if (!vehicle) throw new Exceptions.NotFound("No vehicle found");
 
-  const totalPrice = body.distance * vehicle.pricePerKM * body.extrasPrice;
+  const totalPrice =
+    body.distance *
+    vehicle.pricePerKM *
+    (body.extrasPrice > 0 ? body.extrasPrice : 1);
 
   const admin = await findUserById(req.user._id);
   if (!admin) throw new Exceptions.NotFound("Admin not found");
@@ -119,22 +122,22 @@ exports.deleteBooking = promise(async (req, res) => {
 });
 
 exports.confirmPayment = promise(async (req, res) => {
-  const body = req.body
+  const body = req.body;
 
   const updateBooking = await Booking.updateOne(
     { _id: body.bookingId },
     {
       $set: {
-        isPaid: true
-      }
+        isPaid: true,
+      },
     }
-  )
+  );
 
-  const booking = await Booking.findById(body.bookingId)
-  if (!booking) throw new Exceptions.NotFound("No booking found")
+  const booking = await Booking.findById(body.bookingId);
+  if (!booking) throw new Exceptions.NotFound("No booking found");
 
-  res.json({ message: "Successfully updated booking", booking })
-})
+  res.json({ message: "Successfully updated booking", booking });
+});
 
 async function findUserById(id) {
   return User.findOne({ _id: id });
