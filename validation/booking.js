@@ -7,7 +7,7 @@ exports.addBookingSchema = yup.object({
     returnDateTime: yup.date(),
     distance: yup.number().required(),
     transferType: yup.string().required(),
-    vehicleId: yup.string(),
+    vehicleId: yup.string().required(),
     extrasId: yup.string(),
     extrasPrice: yup.string().required(),
     passengerName: yup.string().required(),
