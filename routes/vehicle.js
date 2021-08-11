@@ -25,6 +25,12 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
   fileFilter: function (req, file, callback) {
+    if (req.body.imagePath) {
+      console.log("condition is true inside file filter");
+      callback(null, false);
+      return;
+    }
+
     var ext = path.extname(file.originalname);
     if (ext !== ".png" && ext !== ".jpg" && ext !== ".gif" && ext !== ".jpeg") {
       return callback(new Error("Only images are allowed"));
@@ -50,8 +56,9 @@ router
   )
   .patch(
     "/update",
-    validation(updateVehicleSchema),
+    // validation(updateVehicleSchema),
     authentication,
+    upload.single("image"),
     vehicle.updateVehicle
   );
 module.exports = router;

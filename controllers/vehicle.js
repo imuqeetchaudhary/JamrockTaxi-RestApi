@@ -34,7 +34,17 @@ exports.getSingleVehicle = promise(async (req, res) => {
 });
 
 exports.updateVehicle = promise(async (req, res) => {
-  const body = req.body;
+  console.log("vehicle id: ", req.body);
+  let vehicleFields;
+  let body = req.body;
+
+  if (req.file) {
+    console.log("inside req.file condition: ", req.file);
+    vehicleFields = { ...body, image: req.file.filename };
+  } else {
+    const { image, ..._vehicleFields } = req.body;
+    vehicleFields = _vehicleFields;
+  }
 
   const vehicle = await Vehicle.updateOne(
     {
@@ -42,7 +52,7 @@ exports.updateVehicle = promise(async (req, res) => {
     },
     {
       $set: {
-        ...req.body,
+        ...vehicleFields,
       },
     }
   );
