@@ -16,9 +16,7 @@ exports.addBooking = promise(async (req, res) => {
   if (!vehicle) throw new Exceptions.NotFound("No vehicle found");
 
   const totalPrice =
-    body.distance *
-    vehicle.pricePerKM *
-    (body.extrasPrice > 0 ? body.extrasPrice : 1);
+    ((body.distance * vehicle.pricePerKM) + body.extrasPrice)
 
   const admin = await findUserById(req.user._id);
   if (!admin) throw new Exceptions.NotFound("Admin not found");
