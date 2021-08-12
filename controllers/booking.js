@@ -65,7 +65,7 @@ exports.getSingleBookingOfSingleUser = promise(async (req, res) => {
 
   const booking = await Booking.findOne({
     _id: body.bookingId,
-    userId: req.user._id,
+    // userId: req.user._id,
   });
   if (!booking) throw new Exceptions.NotFound("No booking found");
 
