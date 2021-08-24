@@ -47,7 +47,7 @@ router
     upload.single("image"),
     vehicle.addVehicle
   )
-  .get("/all", authentication, vehicle.getAllVehicles)
+  .get("/all", vehicle.getAllVehicles)
   .post(
     "/single",
     validation(getVehicleSchema),
