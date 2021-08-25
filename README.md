@@ -55,7 +55,14 @@ password: 12345
     name:
     passengerCapacity:
     luggageCapacity:
-    pricePerKM:
+    type: {
+        1: standard
+        2: family
+        3: exec & vip
+        4: minivan
+        5: small buss
+        6: coach
+    }
     isAvailable:
 }
 ```

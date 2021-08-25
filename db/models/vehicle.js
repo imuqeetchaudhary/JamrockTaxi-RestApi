@@ -17,8 +17,8 @@ const vehicleSchema = new schema({
         type: Number,
         require: true
     },
-    pricePerKM: {
-        type: Number,
+    type: {
+        type: String,
         require: true
     },
     isAvailable: {

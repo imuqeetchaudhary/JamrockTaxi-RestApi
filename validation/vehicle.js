@@ -5,7 +5,7 @@ exports.addVehicleSchema = yup.object({
     image: yup.string(),
     passengerCapacity: yup.number(),
     luggageCapacity: yup.number(),
-    pricePerKM: yup.number(),
+    type: yup.string(),
     isAvailable: yup.boolean()
 })
 

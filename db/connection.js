@@ -5,7 +5,7 @@ const PROD_MONGO_URI =
   "mongodb+srv://muqeet_chaudhary:Abdul6890060@cluster0.bqu75.mongodb.net/Jamrock-Taxi";
 
 const MONGO_URI =
-  process.env.NODE_ENV === "production" ? PROD_MONGO_URI : DEV_MONGO_URI;
+  process.env.NODE_ENV === "production" ? PROD_MONGO_URI : PROD_MONGO_URI;
 
 module.exports = async () => {
   try {
