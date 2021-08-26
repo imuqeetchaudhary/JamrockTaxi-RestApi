@@ -12,13 +12,16 @@ const stripe = require("stripe")(
 exports.addBooking = promise(async (req, res) => {
   const body = req.body;
 
-  const vehicle = await Vehicle.findById(body.vehicleId);
-  if (!vehicle) throw new Exceptions.NotFound("No vehicle found");
+  // const vehicle = await Vehicle.findById(body.vehicleId);
+  // if (!vehicle) throw new Exceptions.NotFound("No vehicle found");
 
-  const totalPrice =
-    ((body.distance * vehicle.pricePerKM) + body.extrasPrice)
+  // const vehicleType = vehicle.type
+  // console.log(vehicleType)
 
-  const admin = await findUserById(req.user._id);
+  const totalPrice = (body.vehiclePrice + body.extrasPrice)
+
+  const adminId = "60f12b73de4ad9284ca58890"
+  const admin = await findUserById(adminId);
   if (!admin) throw new Exceptions.NotFound("Admin not found");
 
   const newBooking = new Booking({
