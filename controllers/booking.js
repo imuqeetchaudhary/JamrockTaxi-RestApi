@@ -20,9 +20,9 @@ exports.addBooking = promise(async (req, res) => {
 
   const totalPrice = (body.vehiclePrice + body.extrasPrice)
 
-  const adminId = "60f12b73de4ad9284ca58890"
-  const admin = await findUserById(adminId);
-  if (!admin) throw new Exceptions.NotFound("Admin not found");
+  // const adminId = "60f12b73de4ad9284ca58890"
+  // const admin = await findUserById(adminId);
+  // if (!admin) throw new Exceptions.NotFound("Admin not found");
 
   const newBooking = new Booking({
     ...body,
@@ -32,10 +32,10 @@ exports.addBooking = promise(async (req, res) => {
   await newBooking.save();
 
   const userBookingSlip = `Dear user ${req.user.name}, You have booked a ride from ${newBooking.pickupLocation} to ${newBooking.dropoffLocation}. The total payable amount is $${newBooking.totalPrice}`;
-  const adminBookingSlip = `Dear admin ${admin.name}, The user ${req.user.name} have booked a ride from ${newBooking.pickupLocation} to ${newBooking.dropoffLocation}. The total payable amount is $${newBooking.totalPrice}`;
+  // const adminBookingSlip = `Dear admin ${admin.name}, The user ${req.user.name} have booked a ride from ${newBooking.pickupLocation} to ${newBooking.dropoffLocation}. The total payable amount is $${newBooking.totalPrice}`;
 
   await sendMail(req.user.email, userBookingSlip);
-  await sendMail(admin.email, adminBookingSlip);
+  // await sendMail(admin.email, adminBookingSlip);
 
   const paymentIntent = await stripe.paymentIntents.create({
     amount: totalPrice * 100,
