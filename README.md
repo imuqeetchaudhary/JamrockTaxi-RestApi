@@ -162,7 +162,8 @@ password: 12345
     returnDateTime: ("2021-07-15T15:30:00Z")
     distance:
     transferType:
-    vehicleId:
+    vehicleType:
+    vehiclePrice:
     extrasId:
     extrasPrice:
     passengerName:
