@@ -31,9 +31,8 @@ const bookingSchema = new schema({
         type: String,
         require: true
     },
-    vehicleId: {
-        type: schema.Types.ObjectId,
-        ref: "Vehicle",
+    vehicleType: {
+        type: String,
         required: true
     },
     extrasId: {
